@@ -1,4 +1,4 @@
-module.exports = class ProtoArray {
+class ProtoArray {
   constructor(...args) {
     this.length = this._assignLen(args);
     this._assignVals(args);
@@ -38,7 +38,11 @@ module.exports = class ProtoArray {
     delete newProto["length"];
     return Object.values(newProto);
   }
-  forEach() {
+  forEach(callbackFn) {
     // Add your code here
+    for (let i = 0; i < this.length; i++) {
+      // callbackFn => (element, index, array) => { ... }
+      callbackFn(this[i], i, this);
+    }
   }
-};
+}
